@@ -1,0 +1,141 @@
+JDBC---------------------
+
+1.What is Statement?
+	It is used to execute Query with database.
+2.What is PreparedStatement?
+	It is used to execute parameterised Query.
+3.What is Connection?
+	It is used to establish connection between java application with database.
+4.What is ExecuteQuery?
+	It is used to execute SELECT query.
+5.What is ExecuteUpdate?
+	It is used to execute specified query, it may be create, drop, insert, update, delete etc.
+6.What is ResultSet in jdbc?
+	Managing result sets with the JDBC driver
+	The result set is an object that represents a set of data returned from a data source, 
+	usually as the result of a query.
+7.What is PrintStackTrace?
+	The printStackTrace() method in Java is a tool used to handle exceptions and errors.
+8.What is Connection Pool?
+	A JDBC connection pool is a group of reusable connections for a particular database.
+	
+
+SERVLET--------------------
+
+1.What is RequestDispatcher?
+	A RequestDispatcher object can be used to forward a request to the resource or to include the resource in a response. 
+	The resource can be dynamic or static.
+2.What is request.getServletPath()?
+	getServletPath() Returns the part of this request's URL that calls the servlet.
+3.What is doGet Method?
+	It handles the GET request.
+	It is invoked by the web container.
+4.What is doPost Method?
+	handles the POST request. 
+	It is invoked by the web container.
+5.What is SendRedirect()?
+	The sendRedirect() method of HttpServletResponse interface can be used to redirect response to another resource, it may be servlet, jsp or html file.
+6.What is setAttribute() and getAttribute()?
+	The servlet setAttribute and getAttribute methods are used to pass information from one servlet to another (or to JSP).
+	It is just like passing object from one class to another so that we can reuse the same object again and again.
+7.What is getParameter()?
+	Returns the value of a request parameter as a String , or null if the parameter does not exist.
+8.What is Servlet?
+	Servlet technology is used to create a web application (resides at server side and generates a dynamic web page).
+
+
+HASHING----------------
+
+1.What is Hasing?
+	Hashing is the process that takes input data and produces fixed size string of characters,
+	Which is typically a hash value.
+	This is one way process you cant reverse it to obtain the origional data.
+	Website Owners cant read users data.
+
+And its Uses:
+	Password Storage.
+	Used to check data integrity.
+	Data Verification.
+	Digital Signatures.
+	Message Authentication.
+
+Hashing Algorithms:
+	MD4.
+	SHA Algorithm. SHA-1,SHA-256,SHA-512
+	RIPEMD.
+	WHIRLPOOL Algorithm.
+	Tiger Algorithm.
+
+JWT(JSON Web Token)(JSON-JavaScript Object Notation)---------------
+
+1.What is Authentication?
+	Which is used to validate username and password.
+2.What is Authorization?
+	Which is used to validate token.
+3.4 types of http request?
+	1.Get
+	2.Post
+	3.Update
+	4.Delete
+
+
+<input type="hidden" name="id"     
+							value="${user != null ? user.getId() : ''}" />
+						<tr>
+							<td><b>Name :<b /></td> <td><input type="text"
+									value="${user != null ? user.getName() : '' }"
+									class="form-control" name="name" required></td>
+						</tr>
+						<tr>
+							<td><b>Email : </b></td><td><input type="email"
+								value="${user != null ? user.getEmail() : '' }"
+								class="form-control" name="email"
+								pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Contact : </b></td><td> <input type="text"
+								value="${user != null ? user.getContact() : '' }"
+								class="form-control" name="contact" required></td>
+						</tr>
+						<br />
+						<tr>
+							<td><label for="country" ><b>Select a country:</b></label></td><td> <select
+								name="country" id="country" required>
+								<option value=""required>Select Country</option>
+									<%
+									try {
+										Class.forName("com.mysql.cj.jdbc.Driver");
+										Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "SULokesh282001");
+										Statement stmt = conn.createStatement();
+										ResultSet rs = stmt.executeQuery("SELECT country_Name from country");
+										while (rs.next()) {
+
+											String name = rs.getString("country_Name");
+									%>
+									<option>
+										<%=name%></option>
+									<%
+									}
+									} catch (Exception e) {
+									e.printStackTrace();
+									}
+									%>
+							</select></td>
+						</tr>
+						<br/>
+						<tr>
+							<td><b>Gender: </b><br /> 
+							<div><input type="radio" value="male"<%="${user != null ? user.getGender() : '' }"%> id="male" name="gender" required>Male</div>
+							<div align="justify"><input type="radio" value="female"<%="${user != null ? user.getGender() : '' }"%> id="female"name="gender">Female<br /></td></div>
+						</tr>
+						<tr>
+						<td>
+						    <b>AreaOfIntrest:</b><br/>
+						    <input type="checkbox"  name="areaOfInterest" value="Playing Football" <%="${user != null ? user.getAreaOfIntrest() : ''}"%>required>Playing Football<br/>
+						    <input type="checkbox"  name="areaOfInterest" value="Playing Cricket" <%="${user != null ? user.getAreaOfIntrest() : ''}"%>required>Playing Cricket<br/>
+						    <input type="checkbox"  name="areaOfInterest" value="Listening Music" <%="${user != null ? user.getAreaOfIntrest() : ''}"%>required>Listening Music<br/>
+						</td>
+						</tr>
+						<td><button type="submit" style="padding:5px" class="btn btn-success">Save</button></td>
+						</tr>
